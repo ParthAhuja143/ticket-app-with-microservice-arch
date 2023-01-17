@@ -1,1 +1,5 @@
 ```kubectl create secret generic jwt-secret --from-literal=JWT_KEY=secret```
+
+*NATS*
+- For port forwarding type ```kubectl port-forward <pod_id> 4222:4222``` & ```kubectl port-forward <pod_id> 8222:8222```.
+- Go to ```http://localhost:8222/streaming``` to monitor the message queue.
