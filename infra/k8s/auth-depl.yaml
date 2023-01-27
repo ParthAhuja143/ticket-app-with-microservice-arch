@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: parthahuja143/ticketing/authentication
+          image: parthahuja143/authentication
           env:
             - name: MONGO_URI
               value: 'mongodb://auth-mongo-srv:27017/auth'

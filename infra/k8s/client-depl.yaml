@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: parthahuja143/ticketing/client
+          image: parthahuja143/client
           env:
             - name: JWT_KEY
               valueFrom:

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: orders
-          image: parthahuja143/ticketing/orders
+          image: parthahuja143/orders
           env:
             - name: NATS_URL
               value: 'http://nats-srv:4222'
