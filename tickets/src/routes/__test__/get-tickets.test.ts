@@ -1,4 +1,3 @@
-import { Request, Response } from 'express';
 import request from 'supertest';
 import { app } from '../../app';
 

@@ -1,7 +1,9 @@
-import { NotAuthorizedError, NotFoundError, requireAuth, validateRequest } from '@parthahuja143/common';
+import { BadRequestError, NotAuthorizedError, NotFoundError, requireAuth, validateRequest } from '@parthahuja143/common';
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
+import { TicketUpdatedPublisher } from '../events/publishers/ticket-updated-publisher';
 import { Ticket } from '../models/ticket';
+import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
 
@@ -19,12 +21,25 @@ router.put('/api/tickets/:id', requireAuth,[
     if(ticket.userId !== req.currentUser!.id){
         throw new NotAuthorizedError();
     }
+
+    // ticket is being ordered
+    if(ticket.orderId){
+        throw new BadRequestError('Ticket is reserved, can not edit');
+    }
+
     ticket.set({
         title: req.body.title,
         price: req.body.price
     })
 
     await ticket.save();
+    new TicketUpdatedPublisher(natsWrapper.client).publish({
+        id: ticket.id,
+        version: ticket.version,
+        title: ticket.title,
+        price: ticket.price,
+        userId: ticket.userId,
+    });
     
     res.send(ticket);
 });

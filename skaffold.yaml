@@ -18,6 +18,14 @@ build:
         dest: .
     docker:
       dockerfile: Dockerfile
+  - image: parthahuja143/ticketing/orders
+    context: orders
+    sync:
+      manual:
+      - src: 'src/**/*.ts'
+        dest: .
+    docker:
+      dockerfile: Dockerfile
   - image: parthahuja143/ticketing/client
     context: client
     sync:
