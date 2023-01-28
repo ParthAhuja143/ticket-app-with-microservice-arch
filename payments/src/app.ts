@@ -3,10 +3,7 @@ import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
 import { currentUser, errorHandler, NotFoundError } from '@parthahuja143/common';
-import { createTicketRouter } from './routes/create-ticket';
-import { getTicketRouter } from './routes/get-ticket';
-import { getAllTicketsRouter } from './routes/get-tickets';
-import { updateTicketRouter } from './routes/update-ticket';
+import { createChargeRouter } from './routes/create-charge';
 var cors = require('cors')
 
 const app = express();
@@ -21,10 +18,7 @@ app.use(
 );
 app.use(currentUser);
 
-app.use(createTicketRouter);
-app.use(getTicketRouter);
-app.use(getAllTicketsRouter);
-app.use(updateTicketRouter)
+app.use(createChargeRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
