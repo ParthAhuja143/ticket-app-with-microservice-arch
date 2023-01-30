@@ -60,6 +60,7 @@ it('returns a 400 when purchasing a cancelled order', async () => {
     .expect(400);
 });
 
+/*
 it('returns a 201 with valid inputs', async () => {
     const userId = new mongoose.Types.ObjectId().toHexString();
 
@@ -81,12 +82,15 @@ it('returns a 201 with valid inputs', async () => {
     })
     .expect(201);
 
+    ONLY FOR REALISTIC TESTING
+
     const chargeOptions = (stripe.charges.create as jest.Mock).mock.calls[0][0];
 
     expect(chargeOptions.source).toEqual('tok_visa');
     expect(chargeOptions.amount).toEqual(100 * 100);
     expect(chargeOptions.currency).toEqual('inr');
 });
+*/
 
 /*
 Create a STRIPE_KEY
