@@ -39,7 +39,6 @@ router.post('/api/payments',
             source: token,
             description: 'Payment Service - ticketing'
         });
-        console.log(charge)
 
         const payment = Payment.build({
             orderId: orderId,
